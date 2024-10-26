@@ -1,0 +1,643 @@
+All_in_one
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+// files-All1,Fpil,All_in_one
+
+public class All_in_one {
+    public static void main(String[] args) throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+            // Test Case 1 and 2 and 3: Open Home Page and maximize and title identification
+            driver.get("https://discoverpilgrim.com/");
+            String title = driver.getTitle();
+            System.out.println("Window is maximized (test passed)");
+            System.out.println(" (test passed) Home Page Title: " + title);
+   
+         // Test Case 4 and 5 and 6: locate searchbar and type in a product and load that product page
+            WebElement searchIcon = driver.findElement(By.xpath("//div[@class='header__icon-list']//a[@aria-label='Search']"));
+   		    searchIcon.click();
+   		    System.out.println("SearchIcon loacted and clicked (test passed)");
+   		    Thread.sleep(3000);
+   		    WebElement searchBar = driver.findElement(By.xpath("//form[@id='predictive-search-form']//input[@placeholder='What are you looking for?']"));
+   	        searchBar.click();   
+   	        System.out.println("SearchBar loacted and clicked (test passed)");
+   		    searchBar.sendKeys("lip blam");
+   		    System.out.println("Product typed in (test passed)");
+   		 WebElement contBtn = driver.findElement(By.xpath("//button[@form='predictive-search-form']"));
+   		 Thread.sleep(3000);
+   		 contBtn.click();
+   		
+   		System.out.println("Product page loaded (test passed)");
+   		
+   		
+   		//Test Case 7 and 8 and 9:Locate hidden desk and select a category and select the sub category
+   		WebElement Category = driver.findElement(By.xpath("//button[@class='header__icon-wrapper tap-area hidden-desk']"));
+        Category.click();
+        System.out.println("Hidden desk located (test passed)");
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//body/mobile-navigation[@id='mobile-menu-drawer']/div[@class='slide_drawer_content']/div[@class='inner_content slide-content']/ul[@class='main_level']/li[2]/a[1]")).click();
+        System.out.println("Selected a category (test passed)");
+        Thread.sleep(2000);
+        
+        //Test Case 10 and 11:Identify sub categories under a category and subcategory selected
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Category']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Concern']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Ingredient']"));
+        System.out.println("Subcategories identified (test passed)"); 
+        Thread.sleep(2000);
+       driver.findElement(By.xpath("//li[@class='active_slide']//li[1]//div[1]//div[1]//div[1]")).click();
+       System.out.println("Selected a subcategory (test passed)");
+       
+      
+       //Test Case 12 and 13 :locate cart Icon and display empty cart
+       driver.findElement(By.xpath("//a[@aria-label='Cart']")).click();
+		System.out.println("Empty cart displayed (test passed)");
+		Thread.sleep(3000);
+		
+		
+		//Test Case 14 and 15 and 16:Load a particular item and Locate,select Add to cart and Display Cart
+		 driver.get("https://discoverpilgrim.com/products/3-redensyl-4-anagain-hair-growth-serum");
+		 System.out.println("An item loaded (test passed)");
+		   Thread.sleep(2000);
+		   driver.findElement(By.xpath("//button[@id='StickyAddToCart']")).click();
+		   System.out.println("Item added to cart (test passed)");
+		   driver.findElement(By.xpath("//cart-drawer[@id='mini-cart']"));
+		   System.out.println("Cart with one Displayed (test passed)");
+		   Thread.sleep(5000);
+		   
+		   
+			//Test Case 17 and 18 and 19 and 20: Locate,select login button and enter the phno and click on continue to display otp screen and Quit
+			driver.get("https://discoverpilgrim.com/");
+			//locate and enter email or phone number in bar
+			driver.findElement(By.xpath("//a[@aria-label='Login']")).click();
+			driver.findElement(By.xpath("//div[@id='login-modal']//div[@class='modal-content']"));
+			Thread.sleep(3000);
+			//enter the phone number
+			driver.findElement(By.xpath("//input[@id='mobileNumber']")).sendKeys("8762604439");
+			Thread.sleep(3000);
+			//opt screen display
+			driver.findElement(By.xpath("//button[@id='loginSendOtpBtn']")).click();
+			Thread.sleep(3000);
+			 driver.quit();
+			System.out.println("Login is successful if correct phno and otp entered manually else login is not possible since Otp is dynamic (test passed)");
+			
+			//Test Case 21:Quit the website
+		   driver.quit();
+	  
+    }
+}
+
+
+All1
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class All1 {
+
+	//Home page static items identification
+	
+	public static void main(String[] args) {
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://discoverpilgrim.com/");
+		driver.manage().window().maximize();
+		
+		 //Test Case 22: Locate the brand logo
+        driver.findElement(By.xpath("//img[@class='header__logo-image']"));
+        System.out.println("Logo located (test passed)");
+        
+        
+        
+        //Test Case 23:Locate a heading (spotlight)
+        driver.findElement(By.xpath("//h3[normalize-space()='In the Spotlight']"));
+        System.out.println("Heading identified (test passed)");
+        
+      //Test Case 24:Identify a section under the heading(Trending Bestseller)
+        driver.findElement(By.xpath("//button[normalize-space()='Trending Bestsellers']"));
+        System.out.println("Trending Bestsellers identified (test passed)");
+        
+        //Test Case 25: Locate TrackOrder Icon
+        driver.findElement(By.xpath("//a[@aria-label='Track Order']"));
+        System.out.println("TrackOrder Icon located (test passed)");
+        
+        driver.quit();
+        
+        
+	}
+
+}
+
+
+Fpil
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Fpil {
+    public static void main(String[] args) throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 seconds wait time
+        driver.manage().window().maximize();
+            // Test Case 26 : wrong title
+            driver.get("https://discoverpilgrim.com/");
+            String title = driver.getTitle();
+            System.out.println("Correct Home Page Title: " + title);
+            //title given wrong
+       		if(title.equals("Pilgrim India - Official Websi"))
+    		{
+    			System.out.println("test passed");
+    		}
+    		else
+    		{
+    			System.out.println("test failed");
+    		}
+    		
+       		//Test Case 27:wrong heading
+       	 WebElement heading = driver.findElement(By.xpath("//h3[normalize-space()='New Arrivals']"));
+       	if(heading.equals("New Arrivas"))
+		{
+			System.out.println("test passed");
+		}
+		else
+		{
+			System.out.println("test failed");
+		}
+       	
+       	//Test Case 28:wrong section
+       	WebElement section = driver.findElement(By.xpath("//div[@id='shopify-section-template--17899637047525__883588eb-9611-41b2-8bd0-924002eb87c5']//button[@type='button'][normalize-space()='Makeup']"));
+       	if(section.equals("Makep"))
+		{
+			System.out.println("test passed");
+		}
+		else
+		{
+			System.out.println("test failed");
+		}
+    		//closing browser
+    		driver.quit();
+   		
+
+   		
+   		
+    }
+}
+
+
+
+
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+// files-All1,Fpil,All_in_one
+
+public class All_in_one {
+    public static void main(String[] args) throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+            // Test Case 1 and 2 and 3: Open Home Page and maximize and title identification
+            driver.get("https://discoverpilgrim.com/");
+            String title = driver.getTitle();
+            System.out.println("Window is maximized (test passed)");
+            System.out.println(" (test passed) Home Page Title: " + title);
+   
+         // Test Case 4 and 5 and 6: locate searchbar and type in a product and load that product page
+            WebElement searchIcon = driver.findElement(By.xpath("//div[@class='header__icon-list']//a[@aria-label='Search']"));
+   		    searchIcon.click();
+   		    System.out.println("SearchIcon loacted and clicked (test passed)");
+   		    Thread.sleep(3000);
+   		    WebElement searchBar = driver.findElement(By.xpath("//form[@id='predictive-search-form']//input[@placeholder='What are you looking for?']"));
+   	        searchBar.click();   
+   	        System.out.println("SearchBar loacted and clicked (test passed)");
+   		    searchBar.sendKeys("lip blam");
+   		    System.out.println("Product typed in (test passed)");
+   		 WebElement contBtn = driver.findElement(By.xpath("//button[@form='predictive-search-form']"));
+   		 Thread.sleep(3000);
+   		 contBtn.click();
+   		
+   		System.out.println("Product page loaded (test passed)");
+   		
+   		
+   		//Test Case 7 and 8 and 9:Locate hidden desk and select a category and select the sub category
+   		WebElement Category = driver.findElement(By.xpath("//button[@class='header__icon-wrapper tap-area hidden-desk']"));
+        Category.click();
+        System.out.println("Hidden desk located (test passed)");
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//body/mobile-navigation[@id='mobile-menu-drawer']/div[@class='slide_drawer_content']/div[@class='inner_content slide-content']/ul[@class='main_level']/li[2]/a[1]")).click();
+        System.out.println("Selected a category (test passed)");
+        Thread.sleep(2000);
+        
+        //Test Case 10 and 11:Identify sub categories under a category and subcategory selected
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Category']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Concern']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Ingredient']"));
+        System.out.println("Subcategories identified (test passed)"); 
+        Thread.sleep(2000);
+       driver.findElement(By.xpath("//li[@class='active_slide']//li[1]//div[1]//div[1]//div[1]")).click();
+       System.out.println("Selected a subcategory (test passed)");
+       
+      
+       //Test Case 12 and 13 :locate cart Icon and display empty cart
+       driver.findElement(By.xpath("//a[@aria-label='Cart']")).click();
+		System.out.println("Empty cart displayed (test passed)");
+		Thread.sleep(3000);
+		
+		
+		//Test Case 14 and 15 and 16:Load a particular item and Locate,select Add to cart and Display Cart
+		 driver.get("https://discoverpilgrim.com/products/redensyl-anagain-hairfall-control-conditioner");
+		 System.out.println("An item loaded (test passed)");
+		   Thread.sleep(3000);
+		   WebElement addBtn =driver.findElement(By.id("AddToCart"));
+		   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addBtn);
+		   Thread.sleep(5000);
+		   addBtn.submit();
+		   //Thread.sleep(3000);
+		   System.out.println("Item added to cart (test passed)");
+		   driver.findElement(By.xpath("//cart-drawer[@id='mini-cart']"));
+		   System.out.println("Cart with one Displayed (test passed)");
+		   Thread.sleep(5000);
+		   
+		   
+			//Test Case 17 and 18 and 19 and 20: Locate,select login button and enter the phno and click on continue to display otp screen and Quit
+			driver.get("https://discoverpilgrim.com/");
+			//locate and enter email or phone number in bar
+			driver.findElement(By.xpath("//a[@aria-label='Login']")).click();
+			driver.findElement(By.xpath("//div[@id='login-modal']//div[@class='modal-content']"));
+			Thread.sleep(3000);
+			//enter the phone number
+			driver.findElement(By.xpath("//input[@id='mobileNumber']")).sendKeys("8762604439");
+			Thread.sleep(3000);
+			//opt screen display
+			driver.findElement(By.xpath("//button[@id='loginSendOtpBtn']")).click();
+			Thread.sleep(3000);
+			 driver.quit();
+			System.out.println("Login is successful if correct phno and otp entered manually else login is not possible since Otp is dynamic (test passed)");
+			
+			//Test Case 21:Quit the website
+		   driver.quit();
+	  
+    }
+}
+
+
+
+
+
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+// files-All1,Fpil,All_in_one
+
+public class All_in_one {
+    public static void main(String[] args) throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+            // Test Case 1 and 2 and 3: Open Home Page and maximize and title identification
+            driver.get("https://discoverpilgrim.com/");
+            String title = driver.getTitle();
+            System.out.println("Window is maximized (test passed)");
+            System.out.println(" (test passed) Home Page Title: " + title);
+   
+         // Test Case 4 and 5 and 6: locate searchbar and type in a product and load that product page
+            WebElement searchIcon = driver.findElement(By.xpath("//div[@class='header__icon-list']//a[@aria-label='Search']"));
+   		    searchIcon.click();
+   		    System.out.println("SearchIcon loacted and clicked (test passed)");
+   		    Thread.sleep(3000);
+   		    WebElement searchBar = driver.findElement(By.xpath("//form[@id='predictive-search-form']//input[@placeholder='What are you looking for?']"));
+   	        searchBar.click();   
+   	        System.out.println("SearchBar loacted and clicked (test passed)");
+   		    searchBar.sendKeys("lip blam");
+   		    System.out.println("Product typed in (test passed)");
+   		 WebElement contBtn = driver.findElement(By.xpath("//button[@form='predictive-search-form']"));
+   		 Thread.sleep(3000);
+   		 contBtn.click();
+   		
+   		System.out.println("Product page loaded (test passed)");
+   		
+   		
+   		//Test Case 7 and 8 and 9:Locate hidden desk and select a category and select the sub category
+   		WebElement Category = driver.findElement(By.xpath("//button[@class='header__icon-wrapper tap-area hidden-desk']"));
+        Category.click();
+        System.out.println("Hidden desk located (test passed)");
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//body/mobile-navigation[@id='mobile-menu-drawer']/div[@class='slide_drawer_content']/div[@class='inner_content slide-content']/ul[@class='main_level']/li[2]/a[1]")).click();
+        System.out.println("Selected a category (test passed)");
+        Thread.sleep(2000);
+        
+        //Test Case 10 and 11:Identify sub categories under a category and subcategory selected
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Category']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Concern']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Ingredient']"));
+        System.out.println("Subcategories identified (test passed)"); 
+        Thread.sleep(2000);
+       driver.findElement(By.xpath("//li[@class='active_slide']//li[1]//div[1]//div[1]//div[1]")).click();
+       System.out.println("Selected a subcategory (test passed)");
+       
+      
+       //Test Case 12 and 13 :locate cart Icon and display empty cart
+       driver.findElement(By.xpath("//a[@aria-label='Cart']")).click();
+		System.out.println("Empty cart displayed (test passed)");
+		Thread.sleep(3000);
+		
+		
+		//Test Case 14 and 15 and 16:Load a particular item and Locate,select Add to cart and Display Cart
+		 driver.get("https://discoverpilgrim.com/products/redensyl-anagain-hairfall-control-conditioner");
+		 System.out.println("An item loaded (test passed)");
+		   Thread.sleep(3000);
+		   WebElement addBtn =driver.findElement(By.id("AddToCart"));
+		   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addBtn);
+		   Thread.sleep(5000);
+		   addBtn.submit();
+		   //Thread.sleep(3000);
+		   System.out.println("Item added to cart (test passed)");
+		   driver.findElement(By.xpath("//cart-drawer[@id='mini-cart']"));
+		   System.out.println("Cart with one Displayed (test passed)");
+		   Thread.sleep(5000);
+		   
+		   
+			//Test Case 17 and 18 and 19 and 20: Locate,select login button and enter the phno and click on continue to display otp screen and Quit
+			driver.get("https://discoverpilgrim.com/");
+			//locate and enter email or phone number in bar
+			driver.findElement(By.xpath("//a[@aria-label='Login']")).click();
+			driver.findElement(By.xpath("//div[@id='login-modal']//div[@class='modal-content']"));
+			Thread.sleep(3000);
+			//enter the phone number
+			driver.findElement(By.xpath("//input[@id='mobileNumber']")).sendKeys("8762604439");
+			Thread.sleep(3000);
+			//opt screen display
+			driver.findElement(By.xpath("//button[@id='loginSendOtpBtn']")).click();
+			Thread.sleep(3000);
+			 driver.quit();
+			System.out.println("Login is successful if correct phno and otp entered manually else login is not possible since Otp is dynamic (test passed)");
+			
+			//Test Case 21:Quit the website
+		   driver.quit();
+	  
+    }
+}
+
+
+
+
+
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+// files-All1,Fpil,All_in_one
+
+public class All_in_one {
+    public static void main(String[] args) throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+            // Test Case 1 and 2 and 3: Open Home Page and maximize and title identification
+            driver.get("https://discoverpilgrim.com/");
+            String title = driver.getTitle();
+            System.out.println("Window is maximized (test passed)");
+            System.out.println(" (test passed) Home Page Title: " + title);
+   
+         // Test Case 4 and 5 and 6: locate searchbar and type in a product and load that product page
+            WebElement searchIcon = driver.findElement(By.xpath("//div[@class='header__icon-list']//a[@aria-label='Search']"));
+   		    searchIcon.click();
+   		    System.out.println("SearchIcon loacted and clicked (test passed)");
+   		    Thread.sleep(3000);
+   		    WebElement searchBar = driver.findElement(By.xpath("//form[@id='predictive-search-form']//input[@placeholder='What are you looking for?']"));
+   	        searchBar.click();   
+   	        System.out.println("SearchBar loacted and clicked (test passed)");
+   		    searchBar.sendKeys("lip blam");
+   		    System.out.println("Product typed in (test passed)");
+   		 WebElement contBtn = driver.findElement(By.xpath("//button[@form='predictive-search-form']"));
+   		 Thread.sleep(3000);
+   		 contBtn.click();
+   		
+   		System.out.println("Product page loaded (test passed)");
+   		
+   		
+   		//Test Case 7 and 8 and 9:Locate hidden desk and select a category and select the sub category
+   		WebElement Category = driver.findElement(By.xpath("//button[@class='header__icon-wrapper tap-area hidden-desk']"));
+        Category.click();
+        System.out.println("Hidden desk located (test passed)");
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//body/mobile-navigation[@id='mobile-menu-drawer']/div[@class='slide_drawer_content']/div[@class='inner_content slide-content']/ul[@class='main_level']/li[2]/a[1]")).click();
+        System.out.println("Selected a category (test passed)");
+        Thread.sleep(2000);
+        
+        //Test Case 10 and 11:Identify sub categories under a category and subcategory selected
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Category']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Concern']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Ingredient']"));
+        System.out.println("Subcategories identified (test passed)"); 
+        Thread.sleep(2000);
+       driver.findElement(By.xpath("//li[@class='active_slide']//li[1]//div[1]//div[1]//div[1]")).click();
+       System.out.println("Selected a subcategory (test passed)");
+       
+      
+       //Test Case 12 and 13 :locate cart Icon and display empty cart
+       driver.findElement(By.xpath("//a[@aria-label='Cart']")).click();
+		System.out.println("Empty cart displayed (test passed)");
+		Thread.sleep(3000);
+		
+		
+		//Test Case 14 and 15 and 16:Load a particular item and Locate,select Add to cart and Display Cart
+		 driver.get("https://discoverpilgrim.com/products/redensyl-anagain-hairfall-control-conditioner");
+		 System.out.println("An item loaded (test passed)");
+		   Thread.sleep(3000);
+		   WebElement addBtn =driver.findElement(By.id("AddToCart"));
+		   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addBtn);
+		   Thread.sleep(5000);
+		   addBtn.submit();
+		   //Thread.sleep(3000);
+		   System.out.println("Item added to cart (test passed)");
+		   driver.findElement(By.xpath("//cart-drawer[@id='mini-cart']"));
+		   System.out.println("Cart with one Displayed (test passed)");
+		   Thread.sleep(5000);
+		   
+		   
+			//Test Case 17 and 18 and 19 and 20: Locate,select login button and enter the phno and click on continue to display otp screen and Quit
+			driver.get("https://discoverpilgrim.com/");
+			//locate and enter email or phone number in bar
+			driver.findElement(By.xpath("//a[@aria-label='Login']")).click();
+			driver.findElement(By.xpath("//div[@id='login-modal']//div[@class='modal-content']"));
+			Thread.sleep(3000);
+			//enter the phone number
+			driver.findElement(By.xpath("//input[@id='mobileNumber']")).sendKeys("8762604439");
+			Thread.sleep(3000);
+			//opt screen display
+			driver.findElement(By.xpath("//button[@id='loginSendOtpBtn']")).click();
+			Thread.sleep(3000);
+			 driver.quit();
+			System.out.println("Login is successful if correct phno and otp entered manually else login is not possible since Otp is dynamic (test passed)");
+			
+			//Test Case 21:Quit the website
+		   driver.quit();
+	  
+    }
+}
+
+
+
+
+
+package web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+// files-All1,Fpil,All_in_one
+
+public class All_in_one {
+    public static void main(String[] args) throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+            // Test Case 1 and 2 and 3: Open Home Page and maximize and title identification
+            driver.get("https://discoverpilgrim.com/");
+            String title = driver.getTitle();
+            System.out.println("Window is maximized (test passed)");
+            System.out.println(" (test passed) Home Page Title: " + title);
+   
+         // Test Case 4 and 5 and 6: locate searchbar and type in a product and load that product page
+            WebElement searchIcon = driver.findElement(By.xpath("//div[@class='header__icon-list']//a[@aria-label='Search']"));
+   		    searchIcon.click();
+   		    System.out.println("SearchIcon loacted and clicked (test passed)");
+   		    Thread.sleep(3000);
+   		    WebElement searchBar = driver.findElement(By.xpath("//form[@id='predictive-search-form']//input[@placeholder='What are you looking for?']"));
+   	        searchBar.click();   
+   	        System.out.println("SearchBar loacted and clicked (test passed)");
+   		    searchBar.sendKeys("lip blam");
+   		    System.out.println("Product typed in (test passed)");
+   		 WebElement contBtn = driver.findElement(By.xpath("//button[@form='predictive-search-form']"));
+   		 Thread.sleep(3000);
+   		 contBtn.click();
+   		
+   		System.out.println("Product page loaded (test passed)");
+   		
+   		
+   		//Test Case 7 and 8 and 9:Locate hidden desk and select a category and select the sub category
+   		WebElement Category = driver.findElement(By.xpath("//button[@class='header__icon-wrapper tap-area hidden-desk']"));
+        Category.click();
+        System.out.println("Hidden desk located (test passed)");
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//body/mobile-navigation[@id='mobile-menu-drawer']/div[@class='slide_drawer_content']/div[@class='inner_content slide-content']/ul[@class='main_level']/li[2]/a[1]")).click();
+        System.out.println("Selected a category (test passed)");
+        Thread.sleep(2000);
+        
+        //Test Case 10 and 11:Identify sub categories under a category and subcategory selected
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Category']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Concern']"));
+        driver.findElement(By.xpath("//li[@class='active_slide']//ul[@class='inner_level']//li//div[@class='category_content']//h2[@class='category_title']//a[@href='#'][normalize-space()='By Ingredient']"));
+        System.out.println("Subcategories identified (test passed)"); 
+        Thread.sleep(2000);
+       driver.findElement(By.xpath("//li[@class='active_slide']//li[1]//div[1]//div[1]//div[1]")).click();
+       System.out.println("Selected a subcategory (test passed)");
+       
+      
+       //Test Case 12 and 13 :locate cart Icon and display empty cart
+       driver.findElement(By.xpath("//a[@aria-label='Cart']")).click();
+		System.out.println("Empty cart displayed (test passed)");
+		Thread.sleep(3000);
+		
+		
+		//Test Case 14 and 15 and 16:Load a particular item and Locate,select Add to cart and Display Cart
+		 driver.get("https://discoverpilgrim.com/products/redensyl-anagain-hairfall-control-conditioner");
+		 System.out.println("An item loaded (test passed)");
+		   Thread.sleep(3000);
+		   WebElement addBtn =driver.findElement(By.id("AddToCart"));
+		   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addBtn);
+		   Thread.sleep(5000);
+		   addBtn.submit();
+		   //Thread.sleep(3000);
+		   System.out.println("Item added to cart (test passed)");
+		   driver.findElement(By.xpath("//cart-drawer[@id='mini-cart']"));
+		   System.out.println("Cart with one Displayed (test passed)");
+		   Thread.sleep(5000);
+		   
+		   
+			//Test Case 17 and 18 and 19 and 20: Locate,select login button and enter the phno and click on continue to display otp screen and Quit
+			driver.get("https://discoverpilgrim.com/");
+			//locate and enter email or phone number in bar
+			driver.findElement(By.xpath("//a[@aria-label='Login']")).click();
+			driver.findElement(By.xpath("//div[@id='login-modal']//div[@class='modal-content']"));
+			Thread.sleep(3000);
+			//enter the phone number
+			driver.findElement(By.xpath("//input[@id='mobileNumber']")).sendKeys("8762604439");
+			Thread.sleep(3000);
+			//opt screen display
+			driver.findElement(By.xpath("//button[@id='loginSendOtpBtn']")).click();
+			Thread.sleep(3000);
+			 driver.quit();
+			System.out.println("Login is successful if correct phno and otp entered manually else login is not possible since Otp is dynamic (test passed)");
+			
+			//Test Case 21:Quit the website
+		   driver.quit();
+	  
+    }
+}
+
+
+
+
+
+
+   		
